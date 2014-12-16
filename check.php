@@ -1,17 +1,21 @@
 <?php
 ignore_user_abort(); //关掉浏览器，PHP脚本也可以继续执行.
 set_time_limit(0); // 通过set_time_limit(0)可以让程序无限制的执行下去
-$interval=60*5; // 每隔半小时运行
+$interval=60*5; // 每隔5分钟运行
 do{
 	$do = "http://panda.www.net.cn/cgi-bin/check.cgi?area_domain=xxx.com";
 	$xml_data = file_get_contents($do);
 	$xml_arr = (array)simplexml_load_string($xml_data);
 	$status=  substr($xml_arr['original'],0,3);   
 	//$status=  210; 
+	//210：可以注册
+	//211：已经注册
+	//212：参数错误
+	//214：未知错误
 	    if($status=="210"){
 		    $filei ='i.txt';
 		    echo $i = file_get_contents($filei);
-		    $url = "http://smsapi.c123.cn/OpenPlatform/OpenApi?action=sendOnce&ac=xxx&authkey=xxx&cgid=472&c=起床了，起床了，起来注册域名了&m=xxx";
+		    $url = "http://smsapi.c123.cn/OpenPlatform/OpenApi?action=sendOnce&ac=xxx&authkey=xxx&cgid=xxx&c=起床了，起床了，起来注册域名了&m=xxx";
 			    if ($i<10) {
 			    	if ($i<2) {
 						$ch = curl_init();
@@ -48,6 +52,6 @@ do{
 	$fh = fopen($filename, "a");
 	fwrite($fh, $word);
 	fclose($fh);
-	//这里是你要执行的代码	
-	sleep($interval);//每隔半小时运行
+
+	sleep($interval);//每隔5分钟运行
 }while(true);
