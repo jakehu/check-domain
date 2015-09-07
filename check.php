@@ -2,7 +2,8 @@
 ignore_user_abort(); //关掉浏览器，PHP脚本也可以继续执行.
 set_time_limit(0); // 通过set_time_limit(0)可以让程序无限制的执行下去
 $interval=60*5; // 每隔5分钟运行
-do{
+do{     
+	//http://pandavip.www.net.cn/check/check_ac1.cgi?domain=jakehu.me
 	$do = "http://panda.www.net.cn/cgi-bin/check.cgi?area_domain=xxx.com";
 	$xml_data = file_get_contents($do);
 	$xml_arr = (array)simplexml_load_string($xml_data);
